@@ -53,6 +53,9 @@ typedef void (^JDFTooltipViewCompletionBlock)();
 
 #pragma mark Tooltip Text
 
+@property (nonatomic, strong) UILabel *tooltipTextLabel;
+
+
 /**
  *  The text that is displayed in the tooltip.
  */

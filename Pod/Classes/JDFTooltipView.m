@@ -16,7 +16,6 @@
 
 @interface JDFTooltipView ()
 
-@property (nonatomic, strong) UILabel *tooltipTextLabel;
 
 @property (nonatomic) CGPoint arrowPoint;
 @property (nonatomic) CGFloat width; // change to width?
