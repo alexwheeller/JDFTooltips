@@ -62,7 +62,7 @@
         self.layer.cornerRadius = 5.0f;
         self.layer.shadowColor = self.shadowColour.CGColor;
         self.layer.shadowOpacity = 0.5f;
-        self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     } else {
         self.layer.cornerRadius = 0.0f;
         self.layer.shadowColor = self.shadowColour.CGColor;
@@ -166,10 +166,10 @@
     self.tooltipTextLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.tooltipTextLabel];
     
-    self.layer.cornerRadius = 5.0f;
-    self.shadowColour = [UIColor grayColor];
+    self.layer.cornerRadius = 2.0f;
+    self.shadowColour = [UIColor whiteColor];
     self.layer.shadowOpacity = 0.5f;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     
     self.tapGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:self.tapGestureRecogniser];
@@ -359,7 +359,7 @@
 
 - (CGFloat)arrowWidth
 {
-    return 14.0f;
+    return 20.0f;
 }
 
 - (CGFloat)minimumArrowPadding
@@ -430,12 +430,13 @@
     CGPoint point = [self convertPoint:self.arrowPoint fromView:self.superview];
     CGFloat angle = [self arrowAngle];
     CGFloat arrowHeight = [self arrowHeight];
+    CGFloat halfArrowWidth = [self arrowWidth] / 2.0;
     
     //// Group
     {
         //// Rectangle Drawing
         CGRect rect = CGRectMake(CGRectGetMinX(frame) + 14, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 28, CGRectGetHeight(frame) - 24);
-        UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect:rect  cornerRadius: 5];
+        UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect:rect  cornerRadius: 2];
         [backgroundColour setFill];
         [rectanglePath fill];
         
@@ -446,10 +447,10 @@
         CGContextRotateCTM(context, -angle * M_PI / 180);
         
         UIBezierPath* bezierPath = UIBezierPath.bezierPath;
-        [bezierPath moveToPoint: CGPointMake(-0, 0.02)];
-        [bezierPath addCurveToPoint: CGPointMake(-7, arrowHeight) controlPoint1: CGPointMake(-2, 0.02) controlPoint2: CGPointMake(-7, arrowHeight)];
-        [bezierPath addLineToPoint: CGPointMake(7, arrowHeight)];
-        [bezierPath addCurveToPoint: CGPointMake(-0, 0.02) controlPoint1: CGPointMake(7, arrowHeight) controlPoint2: CGPointMake(2, 0.02)];
+        [bezierPath moveToPoint: CGPointMake(-0, 0.0)];
+        [bezierPath addCurveToPoint: CGPointMake(-halfArrowWidth, arrowHeight) controlPoint1: CGPointMake(0, 0.0) controlPoint2: CGPointMake(-halfArrowWidth, arrowHeight)];
+        [bezierPath addLineToPoint: CGPointMake(halfArrowWidth, arrowHeight)];
+        [bezierPath addCurveToPoint: CGPointMake(-0, 0.0) controlPoint1: CGPointMake(halfArrowWidth, arrowHeight) controlPoint2: CGPointMake(0, 0.0)];
         [bezierPath closePath];
         [backgroundColour setFill];
         [bezierPath fill];
