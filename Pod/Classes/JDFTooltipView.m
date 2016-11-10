@@ -369,12 +369,12 @@
 
 - (CGFloat)labelPadding
 {
-    return 20.0f;
+    return 40.0f;
 }
 
 - (CGFloat)minimumPaddingToSuperview
 {
-    return 5.0f;
+    return 20.0f;
 }
 
 - (void)sanitiseArrowPointWithWidth:(CGFloat)width
